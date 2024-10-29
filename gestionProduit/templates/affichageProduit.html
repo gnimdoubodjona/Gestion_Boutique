@@ -1,0 +1,36 @@
+{% extends 'menu.html' %}
+{% block title %}Affichage{% endblock %}
+
+{% block content %}
+<div class="container mt-8 p-8 bg-white shadow-md rounded-md">
+    <table class="min-w-full table-auto">
+        <thead>
+            <tr>
+                <th class="px-4 py-2">Nom du produit</th>
+                <th class="px-4 py-2">Quantité</th>
+                <th class="px-4 py-2">Catégorie</th>
+                <th class="px-4 py-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produit in produits %}
+            <tr>
+                <td class="border px-4 py-2">{{ produit.nom_produit }}</td>
+                <td class="border px-4 py-2">{{ produit.quantite_produit }}</td>
+                <td class="border px-4 py-2">{{ produit.categorie.nom_categorie }}</td>
+                <td class="border px-4 py-2">
+                    <a href="{% url 'gestionProduit:delete' produit.id %}"
+                        class="text-red-500 hover:text-red-700 mr-2">Delete</a>
+                    <a href="{% url 'gestionProduit:update' produit.id %}"
+                        class="text-blue-500 hover:text-blue-700">Update</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">
+        <a href="/page1">Ajouter un enregistrement</a>
+    </button>
+</div>
+{% endblock %}

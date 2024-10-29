@@ -1,0 +1,69 @@
+{% extends 'menu.html' %}
+{% block title %}Formulaire d'ajout{% endblock %}
+
+{% block content %}
+<div class="container mx-auto my-8 p-8 bg-white shadow-md rounded-md max-w-md">
+    <h2 class="text-2xl font-semibold mb-4">Ajouter un produit</h2>
+
+    <form method="post" action="{% url 'gestionProduit:produit' %}" enctype="multipart/form-data" class="grid grid-cols-2 gap-4">
+
+        {% csrf_token %}
+
+        <!-- <div>
+            <label for="nom_prenoms_client" class="block text-sm font-medium text-gray-600">Nom clients:</label>
+            <input type="text" id="nom_prenoms_client" name="nom_prenoms_client" required
+                class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+        </div> -->
+    
+        <div>
+            <label for="nom_produit" class="block text-sm font-medium text-gray-600">Nom du produit:</label>
+            <input type="text" id="nom_produit" name="nom_produit" required
+                class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+        </div>
+    
+        <div>
+            <label for="quantite_produit" class="block text-sm font-medium text-gray-600">Quantité:</label>
+            <input type="number" id="quantite_produit" name="quantite_produit" required
+                class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+        </div>
+    
+        <div>
+            <label for="nom_categorie" class="block text-sm font-medium text-gray-600">Catégorie:</label>
+            <select id="nom_categorie" name="nom_categorie" required class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+                {% for categorie in categories %}
+                    <option value="{{ categorie.id }}">{{ categorie.nom_categorie }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+
+        <div>
+            <label for="prix" class="block text-sm font-medium text-gray-600">Prix:</label>
+            <input type="number" id="prix" name="prix" required
+                class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+        </div>
+
+        <div>
+            <label for="description" class="block text-sm font-medium text-gray-600">Desciption:</label>
+            <input type="text" id="description" name="description" required
+                class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+        </div>
+
+        <div>
+            <label for="image" class="block text-sm font-medium text-gray-600">Image:</label>
+            <input type="file" id="image" name="image" accept="image/*">
+            <small class="text-gray-500"></small>
+        </div>
+        
+
+    
+        <button type="submit"
+            class="col-span-2 bg-blue-500 text-white rounded-md p-2 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
+            Enregistrer
+        </button>
+    </form>
+</div>
+
+
+
+{% endblock %}

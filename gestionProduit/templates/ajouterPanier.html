@@ -1,0 +1,27 @@
+{% extends 'menu.html' %}
+
+{% block content %}
+  <div class="container mx-auto mt-8">
+    <h1 class="text-3xl font-semibold mb-4">Ajout au Panier</h1>
+
+    <p class="mb-2">Vous avez ajouté les produits suivants à votre panier :</p>
+  
+    {% for produit_panier in produit_paniers %}
+      <p class="mb-2">{{ produit_panier.produitAssocier }}</p>  
+    {% endfor %}
+
+    {% for produitAssocier in produitAssocier %}
+      <p class="mb-2">{{ produitAssocier }}</p>
+      <a href="{% url 'gestionProduit:deletePanier' %}" class="bg-black text-white ml-4 px-4 py-2 rounded">Supprimer du Panier</a>
+      {% comment %} <a href="{% url 'gestionProduit:transactions' %}" class="bg-black text-white ml-4 px-4 py-2 rounded">Générer le reçu</a> {% endcomment %}
+      <a href="{% url 'gestionProduit:validation' %}" class="bg-black text-white ml-4 px-4 py-2 rounded">Valider produit</a>
+    {% endfor %}
+    
+    {% comment %} {% for produitAssocier in produitAssocier %}
+      <div class="mt-6 p-6 bg-white rounded-xl">
+        
+        
+      </div>
+    {% endfor %} {% endcomment %}
+  </div>
+{% endblock %}

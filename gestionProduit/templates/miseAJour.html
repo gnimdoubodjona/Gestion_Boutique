@@ -1,0 +1,44 @@
+{% extends 'menu.html' %}
+{% block content %}
+<div class="container mx-auto mt-8 p-4 bg-white shadow-md rounded-md">
+    <h2 class="text-lg font-semibold mb-4">Mise à jour d'un Produit</h2>
+
+    <form method="post" class="grid grid-cols-1 gap-4">
+        {% csrf_token %}
+
+        {% comment %} <div>
+            <label for="nom_prenoms_client" class="block text-sm font-medium text-gray-600">Nom clients:</label>
+            <input type="text" id="nom_prenoms_client" name="nom_prenoms_client" required
+                class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+        </div> {% endcomment %}
+
+        <div class="flex flex-col">
+            <label for="nom_produit" class="text-sm text-gray-600 mb-1">Nom du produit:</label>
+            <input type="text" id="nom_produit" name="nom_produit" value="{{ produit.nom_produit }}" required
+                   class="border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+        </div>
+
+        <div class="flex flex-col">
+            <label for="quantite_produit" class="text-sm text-gray-600 mb-1">Quantité:</label>
+            <input type="number" id="quantite_produit" name="quantite_produit" value="{{ produit.quantite_produit }}"
+                   required class="border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+        </div>
+
+        <div class="flex flex-col">
+            <label for="nom_categorie" class="text-sm text-gray-600 mb-1">Catégorie:</label>
+            <input type="text" id="nom_categorie" name="nom_categorie" value="{{ produit.categorie.nom_categorie }}"
+                   required class="border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+        </div>
+
+        <div class="flex flex-col">
+            <label for="prix" class="text-sm text-gray-600 mb-1">Prix:</label>
+            <input type="number" id="prix" name="prix" value="{{ produit.prix }}" required
+                   class="border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+        </div>
+
+        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">
+            Mettre à jour
+        </button>
+    </form>
+</div>
+{% endblock %}

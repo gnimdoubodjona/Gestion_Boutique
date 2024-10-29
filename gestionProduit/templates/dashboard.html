@@ -1,0 +1,67 @@
+<!-- Dans tableau_de_bord.html -->
+{% extends 'menu.html' %}
+
+{% block content %}
+<div class="container mx-auto mt-6 p-6 bg-white rounded-xl">
+    <h1 class="text-2xl font-semibold mb-4">Tableau de bord</h1>
+
+    <div class="mb-8">
+        <h2 class="text-xl font-semibold mb-2">Statistiques du panier</h2>
+        <p>Total des ventes: <span id="totalVentes"></span></p>
+        <p>Total des transactions: <span id="totalTransactions"></span></p>
+    </div>
+
+    <div class="mb-8">
+        <h2 class="text-xl font-semibold mb-2">Niveaux de stock</h2>
+        <ul id="niveauxStock">
+            <!-- Les niveaux de stock seront ajoutés ici par JavaScript -->
+        </ul>
+    </div>
+
+    <!-- Graphique Chart.js -->
+    <canvas id="myChart"></canvas>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Récupérer les données JSON
+        fetch("{% url 'gestionProduit:statistiques_json' %}")
+            .then(response => response.json())
+            .then(data => {
+                // Afficher les données dans le HTML
+                document.getElementById('totalVentes').textContent = data.total_ventes;
+                document.getElementById('totalTransactions').textContent = data.total_transactions;
+
+                // Ajouter les niveaux de stock à la liste
+                const niveauxStockList = document.getElementById('niveauxStock');
+                data.niveaux_stock.forEach(produit => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${produit.nom_produit}: ${produit.quantite_produit}`;
+                    niveauxStockList.appendChild(listItem);
+                });
+
+                // Configurer le graphique Chart.js avec les données
+                const ctx = document.getElementById('myChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.niveaux_stock.map(produit => produit.nom_produit),
+                        datasets: [{
+                            label: 'Niveaux de stock',
+                            data: data.niveaux_stock.map(produit => produit.quantite_produit),
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+    </script>
+</div>
+{% endblock %}

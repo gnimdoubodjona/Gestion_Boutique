@@ -1,0 +1,10 @@
+<h2>Confirmation de Suppression</h2>
+<p>Voulez-vous vraiment supprimer la catégorie "{{ categorie.nom_categorie }}" et tous ses produits associés ?</p>
+
+<form method="post" action="{% url 'gestionProduit:supprimer_categorie' categorie.id %}">
+    {% csrf_token %}
+    <input type="hidden" name="confirmation" value="oui">
+    <button type="submit">Oui</button>
+</form>
+
+<a href="{% url 'gestionProduit:afficher_categories' %}">Annuler</a>

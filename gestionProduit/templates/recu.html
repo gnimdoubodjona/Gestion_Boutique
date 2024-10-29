@@ -1,0 +1,21 @@
+
+<h1>Reçu / Facture</h1>
+{% comment %} <p><strong>Client:</strong> {{ transaction.nom_prenoms_client }}</p> {% endcomment %}
+<p><strong>Date:</strong> {{ transaction.date }}</p>
+<p><strong>Total:</strong> {{ transaction.total }}</p>
+
+
+<h2>Produits:</h2>
+<ul>
+    {% comment %} {% for produit_panier in transaction.panier.produit.all %}
+        <li>{{ produit_panier.produitAssocier.nom_produit }} - {{ produit_panier.quantite_produit }} - {{ produit_panier.produitAssocier.prix }}</li>
+    {% endfor %} {% endcomment %}
+    
+    {% for produit_panier in produit_paniers %}
+    <p class="mb-2">{{ produit_panier.produitAssocier }}</p>
+    {% endfor %}
+
+    {% for produitAssocier in produitAssocier %}
+        <p class="mb-2">{{ produitAssocier }}</p>
+    {% endfor %}
+</ul>
