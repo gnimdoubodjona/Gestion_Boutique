@@ -1,20 +1,127 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>{%block title%}{% endblock %}Gestion des Produits</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
+  <title>{%block title%}{% endblock %}Gestion des Produits</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+  <script src="{% static 'js/hero.js' %}"></script>
 </head>
+
 <body>
 
-    <nav class="py-6 px-6 flex justify-between items-center border-b border-gray-200">
+  <nav
+    class="fixed top-0 left-0 right-0 p-6 flex justify-between items-center border-b border-gray-200 bg-white/95 backdrop-blur-sm z-50 shadow-sm m-3">
+    <!-- Logo -->
+    <a href="/" class="text-2xl font-bold text-teal-600 flex items-center">
+      <i class="fa-solid fa-store mr-2"></i>
+      KeyaKou
+    </a>
+
+    <!-- Menu navigation -->
+    <div class="flex items-center space-x-2">
+
+      <!-- Liens simples -->
+      <a href="#" class="px-4 py-2 text-gray-700 hover:text-teal-600 font-medium transition">
+        Produits
+      </a>
+
+      <a href="#" class="px-4 py-2 text-gray-700 hover:text-teal-600 font-medium transition">
+        À propos
+      </a>
+
+      <!-- Boutons actions -->
+      <a href="{% url 'gestionProduit:recherche_produit' %}"
+        class="flex items-center space-x-2 bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition ml-4">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span>Recherche</span>
+      </a>
+
+      <a href="{% url 'gestionProduit:dashboard' %}"
+        class="flex items-center space-x-2 border border-teal-500 text-teal-500 px-4 py-2 rounded-lg hover:bg-teal-50 transition relative">
+
+        <!-- Badge notification -->
+        <div
+          class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+          0
+        </div>
+
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span>Panier</span>
+      </a>
+
+      <a href="{% url 'gestionProduit:dashboard' %}"
+        class="flex items-center space-x-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition">
+        <i class="fa-solid fa-user"></i>
+        <span>Connexion</span>
+      </a>
+
+    </div>
+  </nav>
+
+
+  <!-- la hero section -->
+  <section class="relative w-full h-[70vh] min-h-[600px] md:h-[80vh] overflow-hidden hero-text">
+
+    <!-- 🖼️ Image de fond (avec légère opacité) -->
+    <div class="absolute inset-0">
+      <img src="{% static 'images/fond_hero.jfif' %}" alt="Image de fond" class="w-full h-full object-cover opacity-40">
+    </div>
+
+    <!-- 🕶️ Overlay noir pour renforcer le contraste du texte -->
+    <div class="absolute inset-0 bg-black/30"></div>
+
+    <!-- 🌟 Contenu -->
+    <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 h-full px-10">
+
+      <!-- Texte -->
+      <div class="flex flex-col justify-center text-white left">
+        <p class="text-red-800 font-semibold mb-2">Vrai & Stylé</p>
+        <h1 class="text-5xl font-extrabold mb-4 desc">Le Vrai Style Qui <br> Vous Ira...</h1>
+        <p class="text-lg max-w-md desc2">
+          Pas que du style, pas que des frings nous allons au delà pour assurer votre bien être.
+        </p>
+        <button class="mt-6 bg-teal-500 text-white px-6 py-3 rounded-full w-fit hover:bg-teal-600 transition">
+          Fais ton choix
+        </button>
+      </div>
+      
+
+      <!-- Image du produit ou illustration -->
+      <div class="hidden md:flex items-center justify-center relative right">
+        <!-- Texte gauche -->
+        <p class="text-white text-6xl font-extrabold absolute left-16 top-1/2 -translate-y-1/2">
+          Stylee
+        </p>
+
+        <!-- Image centrale -->
+        <img src="{% static 'images/hero2.png' %}" alt="Produit" class="w-[400px] drop-shadow-2xl mt-28">
+
+        <!-- Texte droite -->
+        <p class="text-white text-6xl font-extrabold absolute right-16 top-1/2 -translate-y-3/2">
+          Killer
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+  <!-- <nav class="fixed top-0 left-0 right-0 p-6 flex justify-between items-center border-gray-200 rounded-xd mt-3 mb-3 bg-transparent">
         <a href="/" class="text-xl font-semibold">Produits</a>
         <div class="space-x-6">    
             <a href="{% url 'gestionProduit:afficher_panier' %}" class="px-6 py-3 text-lg font-semibold bg-white text-teal-500 rounded-xl hover:bg-teal-100">Panier</a>
             
             <div class="group relative inline-block">
-                <a href="#" class="group-hover:bg-teal-100 px-6 py-3 text-lg font-semibold bg-white text-teal-500 rounded-xl hover:bg-teal-100 focus:outline-none focus:border-white focus:ring focus:ring-white">
+                <a href="#" class="group-hover:bg-white px-6 py-3 text-lg font-semibold bg-white text-white-500 rounded-xl hover:bg-white-100 focus:outline-none focus:border-white focus:ring focus:ring-white">
                     Gestion Produits
                 </a>
                 <div class="hidden group-hover:block absolute z-10 left-0 mt-2 space-y-2 bg-white border border-gray-200 rounded-md shadow-lg w-full">
@@ -36,150 +143,46 @@
             
             <a href="{% url 'gestionProduit:dashboard' %}" class="px-6 py-3 text-lg font-semibold bg-white text-teal-500 rounded-xl hover:bg-teal-100">Dashboard</a>
         </div>
-    </nav>
+    </nav> -->
 
 
 
 
-
-
-
-
-
-
-    <nav class="bg-gray-900 text-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <div class="flex items-center">
-            <div class="flex-shrink-0">
-              <svg class="h-8 w-8 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <div class="hidden md:block">
-              <div class="ml-10 flex items-baseline space-x-4">
-                <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-800">Dashboard</a>
-                <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Team</a>
-                <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projects</a>
-                <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Calendar</a>
-                
-                <!-- Gestion Produits Dropdown -->
-                <div class="relative group">
-                  <button class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none">
-                    Gestion Produits
-                  </button>
-                  <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden group-hover:block z-10">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Ajouter Produit</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Produits stockés</a>
-                  </div>
-                </div>
-                
-                <!-- Gestion Catégories Dropdown -->
-                <div class="relative group">
-                  <button class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none">
-                    Gestion Catégories
-                  </button>
-                  <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden group-hover:block z-10">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Ajouter Catégorie</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Afficher Catégories</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Centered Search Bar -->
-          <div class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-center">
-            <div class="max-w-lg w-full lg:max-w-xs">
-              <label for="search" class="sr-only">Search</label>
-              <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                  </svg>
-                </div>
-                <input id="search" class="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-gray-700 text-gray-300 placeholder-gray-400 focus:outline-none focus:bg-white focus:text-gray-900 sm:text-sm" placeholder="Search" type="search">
-              </div>
-            </div>
-          </div>
-          
-          <div class="flex items-center">
-            <!-- Notification Bell -->
-            <button class="p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-              <span class="sr-only">View notifications</span>
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-              </svg>
-            </button>
-    
-            <!-- Profile dropdown -->
-            <div class="ml-3 relative">
-              <div>
-                <button type="button" class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                  <span class="sr-only">Open user menu</span>
-                  <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-    
-    <script>
-      // Toggle user menu
-      const userMenuButton = document.getElementById('user-menu-button');
-      const userMenu = document.getElementById('user-menu');
-      userMenuButton.addEventListener('click', () => {
-        userMenu.classList.toggle('hidden');
-      });
-    
-      // Toggle search input
-      const searchButton = document.getElementById('search-button');
-      const searchInput = document.getElementById('search-input');
-      searchButton.addEventListener('click', () => {
-        searchInput.classList.toggle('hidden');
-      });
-    </script>
-      
-    
-
-<div class="px-6 py-6">
+  <div class="px-6 py-6">
     {%block content%}
     {% endblock %}
+  </div>
 
-</div>
 
-
-<div class="col-span-3 mt-8">
+  <div class="col-span-3 mt-6">
     {% comment %} <h2 class="text-2xl font-semibold mb-4">Nouveaux Produits</h2> {% endcomment %}
     <div class="grid grid-cols-3 gap-3">
-        {% for produit, categorie in nouveaux_produits_data %}
-            <div>
-                <a href="{% url 'gestionProduit:detail' produit.id %}">
-                    <div class="mb-2">
-                        <img src="{{ produit.image }}" alt="Image du produit {{ produit.nom_produit }}" class="rounded-t-xl">
-                    </div>
-                    <div class="p-6 bg-white rounded-b-xl">
-                        <h2 class="text-2xl">{{ produit.nom_produit }}</h2>
-                        <p class="text-gray-500">Prix : {{ produit.prix }}</p>
-                        {% comment %} <p class="text-gray-500">Date de création : {{ produit.creer_a }}</p> {% endcomment %}
-                    </div>
-                </a>
-            </div>
-        {% endfor %}
+      {% for produit, categorie in nouveaux_produits_data %}
+      <div>
+        <a href="{% url 'gestionProduit:detail' produit.id %}">
+          <div class="mb-2">
+            <img src="{{ produit.image.url }}" alt="Image du produit {{ produit.nom_produit }}" class="rounded-t-xl">
+          </div>
+          <div class="p-6 bg-white rounded-b-xl">
+            <h2 class="text-2xl">{{ produit.nom_produit }}</h2>
+            <p class="text-gray-500">Prix : {{ produit.prix }}</p>
+            {% comment %} <p class="text-gray-500">Date de création : {{ produit.creer_a }}</p> {% endcomment %}
+          </div>
+        </a>
+      </div>
+      {% endfor %}
     </div>
-</div>
-<!-- ... Votre code actuel ... -->
+  </div>
+  <!-- ... Votre code actuel ... -->
 
-<!-- <div class="col-span-3 mt-8">
+  <!-- <div class="col-span-3 mt-8">
     <h2 class="text-2xl font-semibold mb-4">Nouveaux Produits</h2>
     <div class="grid grid-cols-3 gap-3">
         {% for produit, categorie in nouveaux_produits_data %}
             <div>
                 <a href="{% url 'gestionProduit:detail' produit.id %}">
                     <div class="mb-2">
-                        <img src="{{ produit.image }}" alt="Image du produit {{ produit.nom_produit }}" class="rounded-t-xl">
+                        <img src="{{ produit.image.url }}" alt="Image du produit {{ produit.nom_produit }}" class="rounded-t-xl">
                     </div>
                     <div class="p-6 bg-white rounded-b-xl">
                         <h2 class="text-2xl">{{ produit.nom_produit }}</h2>
@@ -193,33 +196,170 @@
 </div> -->
 
 
- <footer class="py-6 px-6 flex justify-between bg-gray-800">
-    <div class="w-2/3 pr-10">
-        <h3 class="mb-5 font-semibold text-gray-400">About</h3>
-        <p class="text-lg text-gray-500">Bienvenue sur notre site de gestion d'une boutique</p>
-    </div>
+  <footer class="bg-gray-900 text-white border-t border-gray-700">
+    <div class="max-w-7xl mx-auto px-6 py-12">
 
-    <div class="w-2/3">
-        <h3 class="mb-5 font-semibold text-gray-400">Menu</h3>
-        <ul class="space-y-2">
-            <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">About</a></li>
-           
-            <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Privacy</a></li>
-            <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Terms of use</a></li>
+      <!-- Container principal -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- Colonne 1 : Brand & Description -->
+        <div class="space-y-4">
+          <div class="flex items-center">
+            <i class="fa-solid fa-store text-teal-400 text-2xl mr-2"></i>
+            <span class="text-2xl font-bold text-white">KeyaKou</span>
+          </div>
+          <p class="text-gray-400 text-lg leading-relaxed">
+            Solution complète pour gérer votre boutique en toute simplicité. Stocks, ventes et clients en un seul
+            endroit.
+          </p>
+
+          <!-- Réseaux sociaux -->
+          <div class="flex space-x-4 pt-4">
+            <a href="#" class="text-gray-400 hover:text-teal-400 transition">
+              <i class="fab fa-facebook text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-teal-400 transition">
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-teal-400 transition">
+              <i class="fab fa-linkedin text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-teal-400 transition">
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Colonne 2 : Liens rapides -->
+        <div class="space-y-4">
+          <h3 class="text-xl font-semibold text-white mb-4">Navigation</h3>
+          <ul class="space-y-3">
+            <li>
+              <a href="#" class="text-gray-400 hover:text-teal-400 transition flex items-center">
+                <i class="fa-solid fa-chevron-right text-teal-500 mr-2 text-xs"></i>
+                Accueil
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-teal-400 transition flex items-center">
+                <i class="fa-solid fa-chevron-right text-teal-500 mr-2 text-xs"></i>
+                Produits
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-teal-400 transition flex items-center">
+                <i class="fa-solid fa-chevron-right text-teal-500 mr-2 text-xs"></i>
+                Comment ça marche
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-teal-400 transition flex items-center">
+                <i class="fa-solid fa-chevron-right text-teal-500 mr-2 text-xs"></i>
+                Tarifs
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Colonne 3 : Légale & Contact -->
+        <div class="space-y-4">
+          <h3 class="text-xl font-semibold text-white mb-4">Légal</h3>
+          <ul class="space-y-3">
+            <li>
+              <a href="#" class="text-gray-400 hover:text-teal-400 transition flex items-center">
+                <i class="fa-solid fa-shield-alt text-teal-500 mr-2"></i>
+                Politique de confidentialité
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-teal-400 transition flex items-center">
+                <i class="fa-solid fa-file-contract text-teal-500 mr-2"></i>
+                Conditions d'utilisation
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-teal-400 transition flex items-center">
+                <i class="fa-solid fa-cookie text-teal-500 mr-2"></i>
+                Préférences cookies
+              </a>
+            </li>
+          </ul>
+
+          <!-- Contact -->
+          <div class="pt-4">
+            <h4 class="text-lg font-semibold text-white mb-3">Contact</h4>
+            <div class="space-y-2 text-gray-400">
+              <p class="flex items-center">
+                <i class="fa-solid fa-envelope text-teal-500 mr-2"></i>
+                contact@keyakou.com
+              </p>
+              <p class="flex items-center">
+                <i class="fa-solid fa-phone text-teal-500 mr-2"></i>
+                +33 1 23 45 67 89
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Séparateur -->
+      <div class="border-t border-gray-700 mt-8 pt-8">
+
+        <!-- Bas du footer -->
+        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+
+          <!-- Copyright -->
+          <div class="text-gray-500">
+            <p>&copy; 2024 KeyaKou. Tous droits réservés.</p>
+          </div>
+
+          <!-- Mentions légales -->
+          <div class="flex space-x-6 text-gray-500">
+            <a href="#" class="hover:text-teal-400 transition">Mentions légales</a>
+            <a href="#" class="hover:text-teal-400 transition">CGV</a>
+            <a href="#" class="hover:text-teal-400 transition">FAQ</a>
+          </div>
+
+        </div>
+      </div>
+
     </div>
+  </footer>
 
 </body>
 {%block js %}
+
+
+
+
+<script>
+  // Toggle user menu
+  const userMenuButton = document.getElementById('user-menu-button');
+  const userMenu = document.getElementById('user-menu');
+  userMenuButton.addEventListener('click', () => {
+    userMenu.classList.toggle('hidden');
+  });
+
+  // Toggle search input
+  const searchButton = document.getElementById('search-button');
+  const searchInput = document.getElementById('search-input');
+  searchButton.addEventListener('click', () => {
+    searchInput.classList.toggle('hidden');
+  });
+</script>
+
+
 <script type="text/javascript">
-    console.log('Juste pour tester');
-    if (localStorage.getItem('panier')==null){
-        var panier={};
-    }else{
-        panier=JSON.parse(localStorage.getItem('panier'));
-    }
-    $(document).on('click', '.td', function(){
-        console.log('ajouter');
-    })
+  console.log('Juste pour tester');
+  if (localStorage.getItem('panier') == null) {
+    var panier = {};
+  } else {
+    panier = JSON.parse(localStorage.getItem('panier'));
+  }
+  $(document).on('click', '.td', function () {
+    console.log('ajouter');
+  })
 </script>
 {% endblock %}
 
