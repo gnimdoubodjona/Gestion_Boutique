@@ -11,13 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
   tl.fromTo(".hero-text .left button", 
     { opacity: 0, y: 30 }, 
     { opacity: 1, y: 0, duration: 1 }, 
-    "+=0.3"
+    "-=0.3"
   );
 
   // 3️⃣ Texte de droite "Stylee / Killer"
   tl.fromTo(".hero-text .right p", 
     { opacity: 0, y: 60 }, 
     { opacity: 1, y: 0, stagger: 0.5, duration: 1.2 }, 
-    "+=0.5"
+    "-=0.2"
   );
 });
