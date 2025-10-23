@@ -16,154 +16,414 @@
 
 <body>
 
+  <!-- NAVIGATION -->
   <nav
-    class="fixed top-0 left-0 right-0 p-6 flex justify-between items-center border-b border-gray-200 bg-white/95 backdrop-blur-sm z-50 shadow-sm m-3">
+    class="z-50 shadow-sm m-3 rounded-lg fixed top-0 left-0 right-0 p-4 flex justify-between items-center bg-white/5 backdrop-blur-xl z-50 border-b border-white/10 shadow-2xl">
     <!-- Logo -->
-    <a href="/" class="text-2xl font-bold text-teal-600 flex items-center">
-      <i class="fa-solid fa-store mr-2"></i>
-      KeyaKou
+    <a href="/" class="text-2xl font-black text-white flex items-center tracking-tight">
+      <i class="fa-solid fa-store mr-2 text-teal-400"></i>
+      <span class="bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">KeyaKou</span>
     </a>
 
     <!-- Menu navigation -->
-    <div class="flex items-center space-x-2">
-
+    <div class="flex items-center space-x-1">
       <!-- Liens simples -->
-      <a href="#" class="px-4 py-2 text-gray-700 hover:text-teal-600 font-medium transition">
+      <a href="#"
+        class="px-5 py-2 text-gray-300 hover:text-white font-medium transition-all hover:bg-white/10 rounded-lg backdrop-blur-sm">
         Produits
       </a>
 
-      <a href="#" class="px-4 py-2 text-gray-700 hover:text-teal-600 font-medium transition">
+      <a href="#"
+        class="px-5 py-2 text-gray-300 hover:text-white font-medium transition-all hover:bg-white/10 rounded-lg backdrop-blur-sm">
         À propos
       </a>
 
       <!-- Boutons actions -->
       <a href="{% url 'gestionProduit:recherche_produit' %}"
-        class="flex items-center space-x-2 bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition ml-4">
+        class="flex items-center space-x-2 bg-teal-500 text-white px-5 py-2.5 rounded-lg hover:bg-teal-400 transition-all ml-4 font-medium shadow-lg shadow-teal-500/30">
         <i class="fa-solid fa-magnifying-glass"></i>
         <span>Recherche</span>
       </a>
 
       <a href="{% url 'gestionProduit:dashboard' %}"
-        class="flex items-center space-x-2 border border-teal-500 text-teal-500 px-4 py-2 rounded-lg hover:bg-teal-50 transition relative">
-
+        class="flex items-center space-x-2 border-2 border-teal-400 text-teal-400 px-5 py-2.5 rounded-lg hover:bg-teal-400/10 transition-all relative font-medium backdrop-blur-sm">
         <!-- Badge notification -->
         <div
-          class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+          class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold shadow-lg">
           0
         </div>
-
         <i class="fa-solid fa-cart-shopping"></i>
         <span>Panier</span>
       </a>
 
       <a href="{% url 'gestionProduit:dashboard' %}"
-        class="flex items-center space-x-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition">
+        class="flex items-center space-x-2 bg-white/10 text-white px-5 py-2.5 rounded-lg hover:bg-white/20 transition-all font-medium backdrop-blur-sm">
         <i class="fa-solid fa-user"></i>
         <span>Connexion</span>
       </a>
-
     </div>
   </nav>
 
-  <!-- la hero section -->
-  <section class="relative w-full h-[70vh] min-h-[600px] md:h-[80vh] overflow-hidden hero-text">
 
-    <!-- 🖼️ Image de fond (avec légère opacité) -->
+  
+
+  <!-- HERO SECTION -->
+  <section class="relative w-full h-screen min-h-[700px] overflow-hidden hero-text bg-black pt-20">
+    <!-- Image de fond avec overlay gradient -->
     <div class="absolute inset-0">
-      <img src="{% static 'images/fond_hero.jfif' %}" alt="Image de fond" class="w-full h-full object-cover opacity-40">
+      <img src="{% static 'images/fond_hero.jfif' %}" alt="Image de fond" class="w-full h-full object-cover opacity-30">
+      <div class="absolute inset-0 bg-gradient-to-br from-black via-black/90 to-teal-900/30"></div>
     </div>
 
-    <!-- 🕶️ Overlay noir pour renforcer le contraste du texte -->
-    <div class="absolute inset-0 bg-black/30"></div>
+    <!-- Effets lumineux -->
+    <div class="absolute top-20 left-20 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 right-20 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl"></div>
 
-    <!-- 🌟 Contenu -->
-    <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 h-full px-10">
-
+    <!-- Contenu -->
+    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 h-full px-8 lg:px-16 max-w-7xl mx-auto">
       <!-- Texte -->
-      <div class="flex flex-col justify-center text-white left">
-        <p class="text-red-800 font-semibold mb-2">Vrai & Stylé</p>
-        <h1 class="text-5xl font-extrabold mb-4 desc">Le Vrai Style Qui <br> Vous Ira...</h1>
-        <p class="text-lg max-w-md desc2">
-          Pas que du style, pas que des frings nous allons au delà pour assurer votre bien être.
+      <div class="flex flex-col justify-center text-white left space-y-6">
+        <div
+          class="inline-flex items-center space-x-2 bg-red-500/20 border border-red-500/30 rounded-full px-4 py-2 w-fit backdrop-blur-sm">
+          <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+          <p class="text-red-400 font-bold text-sm tracking-wider uppercase">Collection</p>
+        </div>
+
+        <h1 class="text-6xl lg:text-7xl font-black leading-tight desc">
+          Le Style Qui Te<br>
+          <span class="bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">Représente.</span>
+        </h1>
+
+        <p class="text-xl text-gray-300 max-w-lg leading-relaxed desc2">
+          Pas que du style, pas que des frings — nous allons au-delà pour assurer votre bien-être.
         </p>
-        <button class="mt-6 bg-teal-500 text-white px-6 py-3 rounded-full w-fit hover:bg-teal-600 transition">
-          Fais ton choix
+        <button
+          class="group bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-8 py-4 rounded-full w-fit font-bold text-lg hover:shadow-2xl hover:shadow-teal-500/50 transition-all duration-300 hover:scale-105 flex items-center space-x-3">
+          <span>Fais ton choix</span>
+          <i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
         </button>
+
+        <!-- Stats -->
+        <div class="flex space-x-8 pt-8 border-t border-white/10">
+          <div>
+            <p class="text-3xl font-black text-white">500+</p>
+            <p class="text-sm text-gray-400">Produits</p>
+          </div>
+          <div>
+            <p class="text-3xl font-black text-white">2K+</p>
+            <p class="text-sm text-gray-400">Clients</p>
+          </div>
+          <div>
+            <p class="text-3xl font-black text-white">4.9★</p>
+            <p class="text-sm text-gray-400">Avis</p>
+          </div>
+        </div>
       </div>
 
-      <!-- Image du produit ou illustration -->
-      <div class="hidden md:flex items-center justify-center relative right">
+      <!-- Image du produit -->
+      <div class="hidden lg:flex items-center justify-center relative right">
         <!-- Texte gauche -->
-        <p class="text-white text-6xl font-extrabold absolute left-16 top-1/2 -translate-y-1/2">
-          Stylee
+        <p
+          class="text-white/10 text-8xl font-black absolute left-0 top-1/2 -translate-y-1/2 -rotate-90 tracking-widest">
+          STYLE
         </p>
 
-        <!-- Image centrale -->
-        <img src="{% static 'images/hero2.png' %}" alt="Produit" class="w-[400px] drop-shadow-2xl mt-28">
+        <!-- Image centrale avec effet -->
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-teal-500/30 to-cyan-500/30 rounded-full blur-3xl"></div>
+          <img src="{% static 'images/hero2.png' %}" alt="Produit"
+            class="relative w-[450px] drop-shadow-2xl transform hover:scale-105 transition-transform duration-500">
+        </div>
 
         <!-- Texte droite -->
-        <p class="text-white text-6xl font-extrabold absolute right-16 top-1/2 -translate-y-3/2">
-          Killer
+        <p
+          class="text-white/10 text-8xl font-black absolute right-0 top-1/2 -translate-y-1/2 rotate-90 tracking-widest">
+          KILLER
         </p>
       </div>
+    </div>
 
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 animate-bounce">
+      <p class="text-white/60 text-sm">Scroll</p>
+      <i class="fa-solid fa-chevron-down text-white/60"></i>
     </div>
   </section>
 
-  <!-- section avec les cards de quelques produits déjà disponible sur l'app -->
-  <section class="mt-14 ml-3 p-2">
-    <p class="text-2xl m-3"> Le meilleur de nos produits </p>
-    <div class="grid grid-cols-3 gap-4">
-      <div class="m-3 p-2">
-        <div
-          class="bg-white border-4 border-t-black border-4 border-r-black border-b-white border-l-white  rounded-md shadow-lg">
-          <div
-            class="relative inline-flex font-semibold rounded-lg text-2xl text-green-500 bg-gray-100 p-1 m-1 border-2 ">
-            10% de réduction
-          </div>
-          <img src="{% static 'images/hero2.png' %}" alt="Produit" class="w-[300px]  m-3">
+  <!-- SECTION PRODUITS -->
+  <section class="bg-gradient-to-b from-black to-gray-900 py-20 px-8">
+    <div class="max-w-7xl mx-auto">
+      <!-- Header -->
+      <div class="flex justify-between items-end mb-12">
+        <div>
+          <p class="text-teal-400 font-bold text-sm tracking-wider uppercase mb-2">Collection</p>
+          <h2 class="text-4xl lg:text-5xl font-black text-white">Le meilleur de nos produits</h2>
         </div>
-        <div class="flex m-2 font-semibold">
-          <p class="flex-1">Nom du vetement</p>
-          <p class="flex-2">15$</p>
-        </div>
+        <a href="#" class="text-teal-400 hover:text-teal-300 font-semibold flex items-center space-x-2 group">
+          <span>Voir tout</span>
+          <i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+        </a>
       </div>
 
-
-      <div class="m-3 p-2">
-        <div
-          class="bg-white border-4 border-t-black border-4 border-r-black border-b-white border-l-white  rounded-md shadow-lg">
+      <!-- Grid de produits -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Card Produit -->
+        <div class="group cursor-pointer">
           <div
-            class="relative inline-flex font-semibold rounded-lg text-2xl text-green-500 bg-gray-100 p-1 m-1 border-2 ">
-            10% de réduction
+            class="relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl overflow-hidden border border-white/10 hover:border-teal-500/50 transition-all duration-500 backdrop-blur-sm hover:shadow-2xl hover:shadow-teal-500/20 hover:-translate-y-2">
+
+            <!-- Badge réduction -->
+            <div
+              class="absolute top-4 left-4 z-20 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-black text-sm px-4 py-2 rounded-full shadow-xl">
+              -10%
+            </div>
+
+            <!-- Bouton favoris -->
+            <button
+              class="absolute top-4 right-4 z-20 w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-all hover:scale-110">
+              <i class="fa-regular fa-heart text-white"></i>
+            </button>
+
+            <!-- Bouton Quick Add - NOUVELLE ICONE -->
+            <button
+              class="absolute top-16 right-4 z-20 w-10 h-10 bg-teal-500 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-teal-400 transition-all hover:scale-110 shadow-lg shadow-teal-500/50 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0">
+              <i class="fa-solid fa-cart-plus text-white text-sm"></i>
+            </button>
+
+            <!-- Image -->
+            <div
+              class="bg-gradient-to-br from-gray-800 to-gray-900 p-8 flex items-center justify-center h-80 overflow-hidden relative">
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+              </div>
+              <img src="{% static 'images/hero2.png' %}" alt="Produit"
+                class="relative z-10 w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-700">
+            </div>
+
+            <!-- Info produit -->
+            <div class="p-6 bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-sm">
+              <div class="flex justify-between items-start mb-3">
+                <div>
+                  <h3 class="text-white font-bold text-lg mb-1">Nom du vêtement</h3>
+                  <p class="text-gray-400 text-sm">Catégorie</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-teal-400 font-black text-2xl">15$</p>
+                  <p class="text-gray-500 text-sm line-through">17$</p>
+                </div>
+              </div>
+
+              <!-- Rating -->
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-1">
+                  <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                  <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                  <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                  <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                  <i class="fa-solid fa-star text-gray-600 text-xs"></i>
+                  <span class="text-gray-400 text-sm ml-2">(24)</span>
+                </div>
+                <span class="text-green-400 text-xs font-semibold">En stock</span>
+              </div>
+
+              <!-- Tailles disponibles -->
+              <div class="flex items-center space-x-2 mb-4">
+                <span class="text-gray-400 text-xs">Tailles:</span>
+                <div class="flex space-x-1">
+                  <span
+                    class="w-6 h-6 border border-white/20 rounded flex items-center justify-center text-white text-xs hover:border-teal-400 hover:text-teal-400 transition cursor-pointer">S</span>
+                  <span
+                    class="w-6 h-6 border border-white/20 rounded flex items-center justify-center text-white text-xs hover:border-teal-400 hover:text-teal-400 transition cursor-pointer">M</span>
+                  <span
+                    class="w-6 h-6 border border-white/20 rounded flex items-center justify-center text-white text-xs hover:border-teal-400 hover:text-teal-400 transition cursor-pointer">L</span>
+                  <span
+                    class="w-6 h-6 border border-white/20 rounded flex items-center justify-center text-white text-xs hover:border-teal-400 hover:text-teal-400 transition cursor-pointer">XL</span>
+                </div>
+              </div>
+
+              <!-- Bouton principal -->
+              <button
+                class="w-full bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 text-white font-bold py-3 rounded-xl transition-all flex items-center justify-center space-x-2 shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/50 group/btn">
+                <i class="fa-solid fa-shopping-bag text-sm"></i>
+                <span>Voir les détails</span>
+                <i class="fa-solid fa-arrow-right text-sm group-hover/btn:translate-x-1 transition-transform"></i>
+              </button>
+            </div>
           </div>
-          <img src="{% static 'images/hero2.png' %}" alt="Produit" class="w-[300px]  m-3">
         </div>
-        <div class="flex m-2 font-semibold">
-          <p class="flex-1">Nom du vetement</p>
-          <p class="flex-2">15$</p>
-        </div>
-      </div>
-
-
-      <div class="m-3 p-2">
-        <div
-          class="bg-white border-4 border-t-black border-4 border-r-black border-b-white border-l-white  rounded-md shadow-lg">
+        
+        <div class="group cursor-pointer">
           <div
-            class="relative inline-flex font-semibold rounded-lg text-2xl text-green-500 bg-gray-100 p-1 m-1 border-2 ">
-            10% de réduction
-          </div>
-          <img src="{% static 'images/hero2.png' %}" alt="Produit" class="w-[300px]  m-3">
-        </div>
-        <div class="flex m-2 font-semibold">
-          <p class="flex-1">Nom du vetement</p>
-          <p class="flex-2">15$</p>
-        </div>
-      </div>
+            class="relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl overflow-hidden border border-white/10 hover:border-teal-500/50 transition-all duration-500 backdrop-blur-sm hover:shadow-2xl hover:shadow-teal-500/20 hover:-translate-y-2">
 
+            <!-- Badge réduction -->
+            <div
+              class="absolute top-4 left-4 z-20 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-black text-sm px-4 py-2 rounded-full shadow-xl">
+              -10%
+            </div>
+
+            <!-- Bouton favoris -->
+            <button
+              class="absolute top-4 right-4 z-20 w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-all hover:scale-110">
+              <i class="fa-regular fa-heart text-white"></i>
+            </button>
+
+            <!-- Bouton Quick Add - NOUVELLE ICONE -->
+            <button
+              class="absolute top-16 right-4 z-20 w-10 h-10 bg-teal-500 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-teal-400 transition-all hover:scale-110 shadow-lg shadow-teal-500/50 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0">
+              <i class="fa-solid fa-cart-plus text-white text-sm"></i>
+            </button>
+
+            <!-- Image -->
+            <div
+              class="bg-gradient-to-br from-gray-800 to-gray-900 p-8 flex items-center justify-center h-80 overflow-hidden relative">
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+              </div>
+              <img src="{% static 'images/hero2.png' %}" alt="Produit"
+                class="relative z-10 w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-700">
+            </div>
+
+            <!-- Info produit -->
+            <div class="p-6 bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-sm">
+              <div class="flex justify-between items-start mb-3">
+                <div>
+                  <h3 class="text-white font-bold text-lg mb-1">Nom du vêtement</h3>
+                  <p class="text-gray-400 text-sm">Catégorie</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-teal-400 font-black text-2xl">15$</p>
+                  <p class="text-gray-500 text-sm line-through">17$</p>
+                </div>
+              </div>
+
+              <!-- Rating -->
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-1">
+                  <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                  <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                  <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                  <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                  <i class="fa-solid fa-star text-gray-600 text-xs"></i>
+                  <span class="text-gray-400 text-sm ml-2">(24)</span>
+                </div>
+                <span class="text-green-400 text-xs font-semibold">En stock</span>
+              </div>
+
+              <!-- Tailles disponibles -->
+              <div class="flex items-center space-x-2 mb-4">
+                <span class="text-gray-400 text-xs">Tailles:</span>
+                <div class="flex space-x-1">
+                  <span
+                    class="w-6 h-6 border border-white/20 rounded flex items-center justify-center text-white text-xs hover:border-teal-400 hover:text-teal-400 transition cursor-pointer">S</span>
+                  <span
+                    class="w-6 h-6 border border-white/20 rounded flex items-center justify-center text-white text-xs hover:border-teal-400 hover:text-teal-400 transition cursor-pointer">M</span>
+                  <span
+                    class="w-6 h-6 border border-white/20 rounded flex items-center justify-center text-white text-xs hover:border-teal-400 hover:text-teal-400 transition cursor-pointer">L</span>
+                  <span
+                    class="w-6 h-6 border border-white/20 rounded flex items-center justify-center text-white text-xs hover:border-teal-400 hover:text-teal-400 transition cursor-pointer">XL</span>
+                </div>
+              </div>
+
+              <!-- Bouton principal -->
+              <button
+                class="w-full bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 text-white font-bold py-3 rounded-xl transition-all flex items-center justify-center space-x-2 shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/50 group/btn">
+                <i class="fa-solid fa-shopping-bag text-sm"></i>
+                <span>Voir les détails</span>
+                <i class="fa-solid fa-arrow-right text-sm group-hover/btn:translate-x-1 transition-transform"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="group cursor-pointer">
+          <div
+            class="relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl overflow-hidden border border-white/10 hover:border-teal-500/50 transition-all duration-500 backdrop-blur-sm hover:shadow-2xl hover:shadow-teal-500/20 hover:-translate-y-2">
+
+            <!-- Badge réduction -->
+            <div
+              class="absolute top-4 left-4 z-20 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-black text-sm px-4 py-2 rounded-full shadow-xl">
+              -10%
+            </div>
+
+            <!-- Bouton favoris -->
+            <button
+              class="absolute top-4 right-4 z-20 w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-all hover:scale-110">
+              <i class="fa-regular fa-heart text-white"></i>
+            </button>
+
+            <!-- Bouton Quick Add - NOUVELLE ICONE -->
+            <button
+              class="absolute top-16 right-4 z-20 w-10 h-10 bg-teal-500 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-teal-400 transition-all hover:scale-110 shadow-lg shadow-teal-500/50 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0">
+              <i class="fa-solid fa-cart-plus text-white text-sm"></i>
+            </button>
+
+            <!-- Image -->
+            <div
+              class="bg-gradient-to-br from-gray-800 to-gray-900 p-8 flex items-center justify-center h-80 overflow-hidden relative">
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+              </div>
+              <img src="{% static 'images/hero2.png' %}" alt="Produit"
+                class="relative z-10 w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-700">
+            </div>
+
+            <!-- Info produit -->
+            <div class="p-6 bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-sm">
+              <div class="flex justify-between items-start mb-3">
+                <div>
+                  <h3 class="text-white font-bold text-lg mb-1">Nom du vêtement</h3>
+                  <p class="text-gray-400 text-sm">Catégorie</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-teal-400 font-black text-2xl">15$</p>
+                  <p class="text-gray-500 text-sm line-through">17$</p>
+                </div>
+              </div>
+
+              <!-- Rating -->
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-1">
+                  <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                  <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                  <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                  <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                  <i class="fa-solid fa-star text-gray-600 text-xs"></i>
+                  <span class="text-gray-400 text-sm ml-2">(24)</span>
+                </div>
+                <span class="text-green-400 text-xs font-semibold">En stock</span>
+              </div>
+
+              <!-- Tailles disponibles -->
+              <div class="flex items-center space-x-2 mb-4">
+                <span class="text-gray-400 text-xs">Tailles:</span>
+                <div class="flex space-x-1">
+                  <span
+                    class="w-6 h-6 border border-white/20 rounded flex items-center justify-center text-white text-xs hover:border-teal-400 hover:text-teal-400 transition cursor-pointer">S</span>
+                  <span
+                    class="w-6 h-6 border border-white/20 rounded flex items-center justify-center text-white text-xs hover:border-teal-400 hover:text-teal-400 transition cursor-pointer">M</span>
+                  <span
+                    class="w-6 h-6 border border-white/20 rounded flex items-center justify-center text-white text-xs hover:border-teal-400 hover:text-teal-400 transition cursor-pointer">L</span>
+                  <span
+                    class="w-6 h-6 border border-white/20 rounded flex items-center justify-center text-white text-xs hover:border-teal-400 hover:text-teal-400 transition cursor-pointer">XL</span>
+                </div>
+              </div>
+
+              <!-- Bouton principal -->
+              <button
+                class="w-full bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 text-white font-bold py-3 rounded-xl transition-all flex items-center justify-center space-x-2 shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/50 group/btn">
+                <i class="fa-solid fa-shopping-bag text-sm"></i>
+                <span>Voir les détails</span>
+                <i class="fa-solid fa-arrow-right text-sm group-hover/btn:translate-x-1 transition-transform"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
     </div>
   </section>
-
 
 
 
