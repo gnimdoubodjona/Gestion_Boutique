@@ -12,16 +12,22 @@ recherche_produit = recherche_produit
 
 
 def menu(request):
-    produits = Produit.objects.select_related('categorie').all()
-    nouveaux_produits = Produit.objects.order_by('-creer_a')[:8]
+    # si tu veux limiter l'affichage principal à 3
+    produits_qs = Produit.objects.select_related('categorie').all()
+    premier_produit = produits_qs.first()
+    produits = produits_qs[:3]   # <-- passe seulement ces 3 au template si besoin
+
+    # nouveaux produits (ici on limite aussi à 3 ; adapte si tu veux 8)
+    nouveaux_produits = Produit.objects.select_related('categorie').order_by('-creer_a')[:3]
+
     categories = Categorie.objects.all()
 
     context = {
-        "produits": produits,
-        "nouveaux_produits_data": zip(nouveaux_produits, categories),
-        "produit": produits.first(),
+        "produits": produits,                         # si tu l'utilises ailleurs
+        "nouveaux_produits": nouveaux_produits,       # on passe la queryset limitée
+        "categories": categories,                     # si tu en as vraiment besoin
+        "produit": premier_produit,
     }
-
     return render(request, 'menu.html', context=context)
 
 
@@ -99,25 +105,6 @@ def delete(request, id):
     return redirect("/affichageProduit")
 
 
-# def update(request, id):
-#     if request.method == 'POST':
-#         produit_mis_a_jour = request.POST.get('nom_produit')
-#         quantite_produit_mis_a_jour = request.POST.get('quantite_produit')
-#         prix_mis_a_jour = request.POST.get('prix')
-#         nom_categorie_mis_a_jour = request.POST.get('nom_categorie')
-
-#         # Rechercher une catégorie existante ou créer une nouvelle
-#         nouvelle_categorie, created = Categorie.objects.get_or_create(nom_categorie=nom_categorie_mis_a_jour)
-
-#         # Mettre à jour le produit existant ou créer un nouveau
-#         produit = Produit.objects.get(id=id)
-#         produit.nom_produit = produit_mis_a_jour
-#         produit.quantite_produit = quantite_produit_mis_a_jour
-#         produit.prix = prix_mis_a_jour
-#         produit.categorie = nouvelle_categorie
-#         produit.save()
-
-#         return redirect('/affichageProduit')
     
 
 
