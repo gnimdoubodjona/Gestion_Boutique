@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+    <script src="{% static 'js/hero.js' %}"></script>
+</head>
+
+<body>
+
+
+    <footer class="bg-gradient-to-b from-gray-900 to-black text-white border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-8 py-16">
+
+            <!-- Container principal -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+                <!-- Colonne 1 : Brand & Description -->
+                <div class="space-y-6">
+                    <div class="flex items-center">
+                        <i class="fa-solid fa-store text-teal-400 text-3xl mr-3"></i>
+                        <span
+                            class="text-3xl font-black bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">KeyaKou</span>
+                    </div>
+                    <p class="text-gray-400 text-base leading-relaxed">
+                        Solution complète pour gérer votre boutique en toute simplicité. Stocks, ventes et clients en un
+                        seul
+                        endroit.
+                    </p>
+
+                    <!-- Réseaux sociaux -->
+                    <div class="flex space-x-4 pt-4">
+                        <a href="#"
+                            class="w-10 h-10 bg-white/10 hover:bg-teal-500 rounded-lg flex items-center justify-center transition-all hover:scale-110">
+                            <i class="fab fa-facebook text-lg"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-white/10 hover:bg-teal-500 rounded-lg flex items-center justify-center transition-all hover:scale-110">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-white/10 hover:bg-teal-500 rounded-lg flex items-center justify-center transition-all hover:scale-110">
+                            <i class="fab fa-linkedin text-lg"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-white/10 hover:bg-teal-500 rounded-lg flex items-center justify-center transition-all hover:scale-110">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Colonne 2 : Liens rapides -->
+                <div class="space-y-6">
+                    <h3 class="text-xl font-bold text-white">Navigation</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-teal-400 transition flex items-center group">
+                                <i
+                                    class="fa-solid fa-chevron-right text-teal-500 mr-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                                Accueil
+                            </a></li>
+                        <li><a href="#produits"
+                                class="text-gray-400 hover:text-teal-400 transition flex items-center group">
+                                <i
+                                    class="fa-solid fa-chevron-right text-teal-500 mr-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                                Produits
+                            </a></li>
+                        <li><a href="#tendances"
+                                class="text-gray-400 hover:text-teal-400 transition flex items-center group">
+                                <i
+                                    class="fa-solid fa-chevron-right text-teal-500 mr-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                                Tendances
+                            </a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-teal-400 transition flex items-center group">
+                                <i
+                                    class="fa-solid fa-chevron-right text-teal-500 mr-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                                Contact
+                            </a></li>
+                    </ul>
+                </div>
+
+                <!-- Colonne 3 : Contact & Légal -->
+                <div class="space-y-6">
+                    <h3 class="text-xl font-bold text-white">Contact</h3>
+                    <div class="space-y-3 text-gray-400">
+                        <p class="flex items-center group">
+                            <i
+                                class="fa-solid fa-envelope text-teal-500 mr-3 group-hover:scale-110 transition-transform"></i>
+                            contact@keyakou.com
+                        </p>
+                        <p class="flex items-center group">
+                            <i
+                                class="fa-solid fa-phone text-teal-500 mr-3 group-hover:scale-110 transition-transform"></i>
+                            +33 1 23 45 67 89
+                        </p>
+                        <p class="flex items-center group">
+                            <i
+                                class="fa-solid fa-location-dot text-teal-500 mr-3 group-hover:scale-110 transition-transform"></i>
+                            Paris, France
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Séparateur -->
+            <div class="border-t border-gray-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <!-- Copyright -->
+                    <div class="text-gray-500">
+                        <p>&copy; 2024 KeyaKou. Tous droits réservés.</p>
+                    </div>
+
+                    <!-- Mentions légales -->
+                    <div class="flex space-x-6 text-gray-500 text-sm">
+                        <a href="#" class="hover:text-teal-400 transition">Mentions légales</a>
+                        <a href="#" class="hover:text-teal-400 transition">CGV</a>
+                        <a href="#" class="hover:text-teal-400 transition">Politique de confidentialité</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    {%block js %}
+    {% endblock %}
+
+
+</body>
+
+</html>

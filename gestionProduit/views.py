@@ -28,7 +28,8 @@ def menu(request):
         "categories": categories,                     # si tu en as vraiment besoin
         "produit": premier_produit,
     }
-    return render(request, 'menu.html', context=context)
+    # return render(request, 'menu.html', context=context)
+    return render(request, 'landing page/base.html', context=context)
 
 
 def gestion_produits(request):
@@ -56,7 +57,8 @@ def gestion_produits(request):
             description=description
         )
 
-        return redirect('/affichageProduit')
+        # return redirect('/affichageProduit')
+        return redirect('page client/affichageProduit.html ')
 
     return render(request, 'page1.html', {'categories': categories})
 
@@ -96,7 +98,7 @@ def supprimer_categorie(request, categorie_id):
     
 def affichageProduit(request):
     produits = Produit.objects.all()
-    return render(request, 'affichageProduit.html', {'produits': produits})
+    return render(request, 'page client/affichageProduit.html', {'produits': produits})
 
 
 def delete(request, id):
